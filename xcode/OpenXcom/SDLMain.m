@@ -47,7 +47,7 @@ static NSString *getApplicationName(void)
     NSString *appName = 0;
 
     /* Determine the application name */
-    dict = (const NSDictionary *)CFBridgingRelease(CFBundleGetInfoDictionary(CFBundleGetMainBundle()));
+    dict = (__bridge const NSDictionary *)CFBridgingRelease(CFBundleGetInfoDictionary(CFBundleGetMainBundle()));
     if (dict)
         appName = [dict objectForKey: @"CFBundleName"];
     
