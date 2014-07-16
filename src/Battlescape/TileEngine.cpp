@@ -492,6 +492,13 @@ int TileEngine::checkVoxelExposure(Position *originVoxel, Tile *tile, BattleUnit
 		heightRange = 12;
 	}
 
+    if (heightRange < 0)
+    {
+        Log(LOG_INFO) << "Unit " << otherUnit->getId() << " has a negative height of " << heightRange;
+        assert(heightRange >= 0 && "Unit has negative height, please check your log file for more details");
+        return 0;
+    }
+
 	int targetMaxHeight=targetMinHeight+heightRange;
 	// scan ray from top to bottom  plus different parts of target cylinder
 	int total=0;
