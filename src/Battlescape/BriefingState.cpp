@@ -37,6 +37,7 @@
 #include <sstream>
 #include "../Engine/Options.h"
 #include "../Engine/Screen.h"
+#include "../Engine/Logger.h"
 
 namespace OpenXcom
 {
@@ -149,8 +150,12 @@ BriefingState::BriefingState(Craft *craft, Base *base)
 
 	if (mission == "STR_BASE_DEFENSE")
 	{
-		// And make sure the base is unmarked.
-		base->setRetaliationTarget(false);
+        assert(base && "Base defense mission without a base!");
+        if (base)
+        {
+            // And make sure the base is unmarked.
+            base->setRetaliationTarget(false);
+        }
 	}
 }
 
