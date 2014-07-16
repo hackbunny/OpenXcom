@@ -185,6 +185,11 @@ MapData *RuleTerrain::getMapData(unsigned int *id, int *mapDataSetID) const
 		(*mapDataSetID)++;
 	}
 
+    if (!mdf)
+    {
+        return NULL;
+    }
+
 	return mdf->getObjects()->at(*id);
 }
 
