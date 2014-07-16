@@ -895,7 +895,7 @@ BattleUnit* TileEngine::getReactor(std::vector<BattleUnit *> spotters, BattleUni
 			bu = *i;
 		}
 	}
-	if (unit->getReactionScore() <= bestScore)
+	if (bu && unit->getReactionScore() <= bestScore)
 	{
 		if (bu->getOriginalFaction() == FACTION_PLAYER)
 		{
