@@ -35,6 +35,7 @@
 #include "../Savegame/Base.h"
 #include "ManufactureStartState.h"
 #include "../Menu/ErrorMessageState.h"
+#include "../Engine/Logger.h"
 
 namespace OpenXcom
 {
@@ -155,6 +156,12 @@ void NewManufactureListState::lstProdClick(Action *)
 			break;
 		}
 	}
+    if (!rule)
+    {
+        Log(LOG_INFO) << "Nonexistent manufacturing item " << _displayedStrings[_lstManufacture->getSelectedRow()] << " selected at row " << _lstManufacture->getSelectedRow();
+        assert(rule && "Nonexistent manufacturing item selected, please check your log file for more details");
+        return;
+    }
 	if (rule->getCategory() == "STR_CRAFT" && _base->getAvailableHangars() - _base->getUsedHangars() == 0)
 	{
 		_game->pushState(new ErrorMessageState(tr("STR_NO_FREE_HANGARS_FOR_CRAFT_PRODUCTION"), _palette, Palette::blockOffset(15)+1, "BACK17.SCR", 6));
