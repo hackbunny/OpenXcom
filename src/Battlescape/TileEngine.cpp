@@ -425,11 +425,13 @@ bool TileEngine::visible(BattleUnit *currentUnit, Tile *tile)
 		size_t visibleDistance = _trajectory.size();
 		for (size_t i = 0; i < _trajectory.size(); i++)
 		{
-			if (t != _save->getTile(Position(_trajectory.at(i).x/16,_trajectory.at(i).y/16, _trajectory.at(i).z/24)))
-			{
-				t = _save->getTile(Position(_trajectory.at(i).x/16,_trajectory.at(i).y/16, _trajectory.at(i).z/24));
-			}
-			if (t->getFire() == 0)
+            Position p(_trajectory.at(i).x/16,_trajectory.at(i).y/16, _trajectory.at(i).z/24);
+			t = _save->getTile(p);
+            if (!t) {
+                Log(LOG_INFO) << "No tile found at trajectory point " << p;
+            }
+            assert(t && "No tile found at trajectory point, please check your log file for more details");
+			if (t && t->getFire() == 0)
 			{
 				visibleDistance += t->getSmoke() / 3;
 			}
