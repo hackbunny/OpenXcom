@@ -158,8 +158,6 @@
 		5E7E45AC1976BA9D00D453BD /* MultipleTargetsState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E43F51976BA9C00D453BD /* MultipleTargetsState.cpp */; };
 		5E7E45AD1976BA9D00D453BD /* NewPossibleManufactureState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E43F71976BA9C00D453BD /* NewPossibleManufactureState.cpp */; };
 		5E7E45AE1976BA9D00D453BD /* NewPossibleResearchState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E43F91976BA9C00D453BD /* NewPossibleResearchState.cpp */; };
-		5E7E45AF1976BA9D00D453BD /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E43FB1976BA9C00D453BD /* Polygon.cpp */; };
-		5E7E45B01976BA9D00D453BD /* Polyline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E43FD1976BA9C00D453BD /* Polyline.cpp */; };
 		5E7E45B11976BA9D00D453BD /* ProductionCompleteState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E43FF1976BA9C00D453BD /* ProductionCompleteState.cpp */; };
 		5E7E45B21976BA9D00D453BD /* PsiTrainingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E44011976BA9C00D453BD /* PsiTrainingState.cpp */; };
 		5E7E45B31976BA9D00D453BD /* ResearchCompleteState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E44031976BA9C00D453BD /* ResearchCompleteState.cpp */; };
@@ -301,6 +299,11 @@
 		5E7E463B1976BA9D00D453BD /* Ufopaedia.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E45121976BA9D00D453BD /* Ufopaedia.cpp */; };
 		5E7E463C1976BA9D00D453BD /* UfopaediaSelectState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E45141976BA9D00D453BD /* UfopaediaSelectState.cpp */; };
 		5E7E463D1976BA9D00D453BD /* UfopaediaStartState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E45161976BA9D00D453BD /* UfopaediaStartState.cpp */; };
+		5EB7BCA019A4AB1E002FCFC2 /* BattlescapeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7BC9E19A4AB1E002FCFC2 /* BattlescapeButton.cpp */; };
+		5EB7BCA919A4AB6E002FCFC2 /* Polygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7BCA119A4AB6E002FCFC2 /* Polygon.cpp */; };
+		5EB7BCAA19A4AB6E002FCFC2 /* Polyline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7BCA319A4AB6E002FCFC2 /* Polyline.cpp */; };
+		5EB7BCAB19A4AB6E002FCFC2 /* RuleGlobe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7BCA519A4AB6E002FCFC2 /* RuleGlobe.cpp */; };
+		5EB7BCAC19A4AB6E002FCFC2 /* RuleInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7BCA719A4AB6E002FCFC2 /* RuleInterface.cpp */; };
 		6BACF5FC19350F9700E1A981 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF5FB19350F9700E1A981 /* Cocoa.framework */; };
 		6BACF61419350F9700E1A981 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BACF61319350F9700E1A981 /* Images.xcassets */; };
 		6BACF63119350FF800E1A981 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF63019350FF800E1A981 /* SDLMain.m */; };
@@ -624,10 +627,6 @@
 		5E7E43F81976BA9C00D453BD /* NewPossibleManufactureState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPossibleManufactureState.h; sourceTree = "<group>"; };
 		5E7E43F91976BA9C00D453BD /* NewPossibleResearchState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NewPossibleResearchState.cpp; sourceTree = "<group>"; };
 		5E7E43FA1976BA9C00D453BD /* NewPossibleResearchState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPossibleResearchState.h; sourceTree = "<group>"; };
-		5E7E43FB1976BA9C00D453BD /* Polygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
-		5E7E43FC1976BA9C00D453BD /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polygon.h; sourceTree = "<group>"; };
-		5E7E43FD1976BA9C00D453BD /* Polyline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polyline.cpp; sourceTree = "<group>"; };
-		5E7E43FE1976BA9C00D453BD /* Polyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyline.h; sourceTree = "<group>"; };
 		5E7E43FF1976BA9C00D453BD /* ProductionCompleteState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProductionCompleteState.cpp; sourceTree = "<group>"; };
 		5E7E44001976BA9C00D453BD /* ProductionCompleteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductionCompleteState.h; sourceTree = "<group>"; };
 		5E7E44011976BA9C00D453BD /* PsiTrainingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PsiTrainingState.cpp; sourceTree = "<group>"; };
@@ -904,6 +903,16 @@
 		5E7E45161976BA9D00D453BD /* UfopaediaStartState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UfopaediaStartState.cpp; sourceTree = "<group>"; };
 		5E7E45171976BA9D00D453BD /* UfopaediaStartState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UfopaediaStartState.h; sourceTree = "<group>"; };
 		5E7E45181976BA9D00D453BD /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		5EB7BC9E19A4AB1E002FCFC2 /* BattlescapeButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattlescapeButton.cpp; sourceTree = "<group>"; };
+		5EB7BC9F19A4AB1E002FCFC2 /* BattlescapeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattlescapeButton.h; sourceTree = "<group>"; };
+		5EB7BCA119A4AB6E002FCFC2 /* Polygon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polygon.cpp; sourceTree = "<group>"; };
+		5EB7BCA219A4AB6E002FCFC2 /* Polygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polygon.h; sourceTree = "<group>"; };
+		5EB7BCA319A4AB6E002FCFC2 /* Polyline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Polyline.cpp; sourceTree = "<group>"; };
+		5EB7BCA419A4AB6E002FCFC2 /* Polyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Polyline.h; sourceTree = "<group>"; };
+		5EB7BCA519A4AB6E002FCFC2 /* RuleGlobe.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuleGlobe.cpp; sourceTree = "<group>"; };
+		5EB7BCA619A4AB6E002FCFC2 /* RuleGlobe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleGlobe.h; sourceTree = "<group>"; };
+		5EB7BCA719A4AB6E002FCFC2 /* RuleInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuleInterface.cpp; sourceTree = "<group>"; };
+		5EB7BCA819A4AB6E002FCFC2 /* RuleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleInterface.h; sourceTree = "<group>"; };
 		6BACF5F819350F9700E1A981 /* OpenXcom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenXcom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BACF5FB19350F9700E1A981 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6BACF5FE19350F9700E1A981 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -1322,10 +1331,6 @@
 				5E7E43F81976BA9C00D453BD /* NewPossibleManufactureState.h */,
 				5E7E43F91976BA9C00D453BD /* NewPossibleResearchState.cpp */,
 				5E7E43FA1976BA9C00D453BD /* NewPossibleResearchState.h */,
-				5E7E43FB1976BA9C00D453BD /* Polygon.cpp */,
-				5E7E43FC1976BA9C00D453BD /* Polygon.h */,
-				5E7E43FD1976BA9C00D453BD /* Polyline.cpp */,
-				5E7E43FE1976BA9C00D453BD /* Polyline.h */,
 				5E7E43FF1976BA9C00D453BD /* ProductionCompleteState.cpp */,
 				5E7E44001976BA9C00D453BD /* ProductionCompleteState.h */,
 				5E7E44011976BA9C00D453BD /* PsiTrainingState.cpp */,
@@ -1355,6 +1360,8 @@
 				5E7E44131976BA9C00D453BD /* ArrowButton.h */,
 				5E7E44141976BA9C00D453BD /* Bar.cpp */,
 				5E7E44151976BA9C00D453BD /* Bar.h */,
+				5EB7BC9E19A4AB1E002FCFC2 /* BattlescapeButton.cpp */,
+				5EB7BC9F19A4AB1E002FCFC2 /* BattlescapeButton.h */,
 				5E7E44161976BA9C00D453BD /* ComboBox.cpp */,
 				5E7E44171976BA9C00D453BD /* ComboBox.h */,
 				5E7E44181976BA9C00D453BD /* Cursor.cpp */,
@@ -1486,6 +1493,10 @@
 				5E7E44911976BA9C00D453BD /* MapDataSet.h */,
 				5E7E44921976BA9C00D453BD /* MCDPatch.cpp */,
 				5E7E44931976BA9C00D453BD /* MCDPatch.h */,
+				5EB7BCA119A4AB6E002FCFC2 /* Polygon.cpp */,
+				5EB7BCA219A4AB6E002FCFC2 /* Polygon.h */,
+				5EB7BCA319A4AB6E002FCFC2 /* Polyline.cpp */,
+				5EB7BCA419A4AB6E002FCFC2 /* Polyline.h */,
 				5E7E44941976BA9C00D453BD /* RuleAlienMission.cpp */,
 				5E7E44951976BA9C00D453BD /* RuleAlienMission.h */,
 				5E7E44961976BA9C00D453BD /* RuleBaseFacility.cpp */,
@@ -1496,6 +1507,10 @@
 				5E7E449B1976BA9C00D453BD /* RuleCraft.h */,
 				5E7E449C1976BA9C00D453BD /* RuleCraftWeapon.cpp */,
 				5E7E449D1976BA9C00D453BD /* RuleCraftWeapon.h */,
+				5EB7BCA519A4AB6E002FCFC2 /* RuleGlobe.cpp */,
+				5EB7BCA619A4AB6E002FCFC2 /* RuleGlobe.h */,
+				5EB7BCA719A4AB6E002FCFC2 /* RuleInterface.cpp */,
+				5EB7BCA819A4AB6E002FCFC2 /* RuleInterface.h */,
 				5E7E449E1976BA9C00D453BD /* RuleInventory.cpp */,
 				5E7E449F1976BA9C00D453BD /* RuleInventory.h */,
 				5E7E44A01976BA9C00D453BD /* RuleItem.cpp */,
@@ -1803,13 +1818,15 @@
 				5E7E45C31976BA9D00D453BD /* Slider.cpp in Sources */,
 				5E7E45531976BA9D00D453BD /* InventoryState.cpp in Sources */,
 				5E7E453F1976BA9D00D453BD /* ActionMenuItem.cpp in Sources */,
+				5EB7BCA019A4AB1E002FCFC2 /* BattlescapeButton.cpp in Sources */,
 				5E7E45621976BA9D00D453BD /* PromotionsState.cpp in Sources */,
 				5E7E45A21976BA9D00D453BD /* DogfightState.cpp in Sources */,
 				5E7E45451976BA9D00D453BD /* BattlescapeGenerator.cpp in Sources */,
 				5E7E46231976BA9D00D453BD /* SavedBattleGame.cpp in Sources */,
-				5E7E45AF1976BA9D00D453BD /* Polygon.cpp in Sources */,
+				5EB7BCAC19A4AB6E002FCFC2 /* RuleInterface.cpp in Sources */,
 				5E7E45921976BA9D00D453BD /* Timer.cpp in Sources */,
 				5E7E45B41976BA9D00D453BD /* ResearchRequiredState.cpp in Sources */,
+				5EB7BCAB19A4AB6E002FCFC2 /* RuleGlobe.cpp in Sources */,
 				5E7E461E1976BA9D00D453BD /* MovingTarget.cpp in Sources */,
 				5E7E462D1976BA9D00D453BD /* Vehicle.cpp in Sources */,
 				5E7E45B11976BA9D00D453BD /* ProductionCompleteState.cpp in Sources */,
@@ -1841,6 +1858,7 @@
 				5E7E45331976BA9D00D453BD /* SelectStartFacilityState.cpp in Sources */,
 				5E7E45401976BA9D00D453BD /* ActionMenuState.cpp in Sources */,
 				5E7E45BF1976BA9D00D453BD /* Frame.cpp in Sources */,
+				5EB7BCA919A4AB6E002FCFC2 /* Polygon.cpp in Sources */,
 				5E7E45A71976BA9D00D453BD /* GraphsState.cpp in Sources */,
 				5E7E45E11976BA9D00D453BD /* OptionsGeoscapeState.cpp in Sources */,
 				5E7E45DD1976BA9D00D453BD /* OptionsBattlescapeState.cpp in Sources */,
@@ -1849,7 +1867,6 @@
 				5E7E45601976BA9D00D453BD /* Projectile.cpp in Sources */,
 				5E7E45AA1976BA9D00D453BD /* LowFuelState.cpp in Sources */,
 				5E7E45E21976BA9D00D453BD /* OptionsModsState.cpp in Sources */,
-				5E7E45B01976BA9D00D453BD /* Polyline.cpp in Sources */,
 				5E7E462C1976BA9D00D453BD /* Ufo.cpp in Sources */,
 				5E7E46261976BA9D00D453BD /* Soldier.cpp in Sources */,
 				5E7E459B1976BA9D00D453BD /* ConfirmCydoniaState.cpp in Sources */,
@@ -1917,6 +1934,7 @@
 				5E7E451A1976BA9D00D453BD /* BasescapeState.cpp in Sources */,
 				5E7E45B61976BA9D00D453BD /* TargetInfoState.cpp in Sources */,
 				5E7E456B1976BA9D00D453BD /* UnitTurnBState.cpp in Sources */,
+				5EB7BCAA19A4AB6E002FCFC2 /* Polyline.cpp in Sources */,
 				5E7E45F61976BA9D00D453BD /* ExtraSounds.cpp in Sources */,
 				5E7E459F1976BA9D00D453BD /* CraftErrorState.cpp in Sources */,
 				5E7E45431976BA9D00D453BD /* BattleAIState.cpp in Sources */,
