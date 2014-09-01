@@ -1065,6 +1065,10 @@ void DogfightState::move()
 						break;
 					}
 				}
+                for (std::set<Craft*>::const_iterator craft = _ufo->getEngagedByCraft().begin(); craft != _ufo->getEngagedByCraft().end(); ++craft)
+                {
+                    (*craft)->creditKill(_ufo);
+                }
 				setStatus("STR_UFO_DESTROYED");
 				_game->getResourcePack()->getSound("GEO.CAT", ResourcePack::UFO_EXPLODE)->play(); //11
 			}
@@ -1092,6 +1096,10 @@ void DogfightState::move()
 						break;
 					}
 				}
+                for (std::set<Craft*>::const_iterator craft = _ufo->getEngagedByCraft().begin(); craft != _ufo->getEngagedByCraft().end(); ++craft)
+                {
+                    (*craft)->creditKill(_ufo);
+                }
 			}
 			if (!_globe->insideLand(_ufo->getLongitude(), _ufo->getLatitude()))
 			{
@@ -1145,6 +1153,8 @@ void DogfightState::fireWeapon1()
 		if (w1->setAmmo(w1->getAmmo() - 1))
 		{
 
+            _ufo->addEngagedByCraft(_craft);
+
 			std::wostringstream ss;
 			ss << w1->getAmmo();
 			_txtAmmo1->setText(ss.str());
@@ -1171,6 +1181,8 @@ void DogfightState::fireWeapon2()
 		if (w2->setAmmo(w2->getAmmo() - 1))
 		{
 
+            _ufo->addEngagedByCraft(_craft);
+
 			std::wostringstream ss;
 			ss << w2->getAmmo();
 			_txtAmmo2->setText(ss.str());
@@ -1195,6 +1207,8 @@ void DogfightState::ufoFireWeapon()
 	_ufoFireInterval = (_ufo->getRules()->getWeaponReload() - (int)(_game->getSavedGame()->getDifficulty()));
 	_ufoFireInterval = (RNG::generate(0, _ufoFireInterval) + _ufoFireInterval) * _timeScale;
 	_ufoWtimer->setInterval(_ufoFireInterval);
+
+    _ufo->addEngagedByCraft(_craft);
 
 	setStatus("STR_UFO_RETURN_FIRE");
 	CraftWeaponProjectile *p = new CraftWeaponProjectile();

@@ -35,6 +35,8 @@
 #include "AlienBase.h"
 #include "Vehicle.h"
 #include "../Ruleset/RuleItem.h"
+#include "../Ruleset/RuleUfo.h"
+#include "../Engine/Logger.h"
 
 namespace OpenXcom
 {
@@ -931,6 +933,50 @@ void Craft::setInterceptionOrder(const int order)
 int Craft::getInterceptionOrder() const
 {
 	return _interceptionOrder;
+}
+
+/**
+ * Credits an UFO kill to the craft.
+ * @param ufo The UFO shot down by this craft.
+ */
+void Craft::creditKill(Ufo *ufo)
+{
+    // Ideas I may implement:
+    // if (ufo->getShotDownByCraft() == this) ... // special scoring for the craft that dealt the fatal shot?
+    // if (ufo->isDestroyed()) ... // special scoring if the UFO was destroyed?
+
+    const std::set<Craft *>& participatingCraft = ufo->getEngagedByCraft();
+
+    assert(participatingCraft.size());
+    assert(participatingCraft.find(this) != participatingCraft.end());
+
+    if (participatingCraft.size() == 0 || participatingCraft.find(this) == participatingCraft.end()) {
+        // TODO: log warning
+        return;
+    }
+
+    // We'll share the credit with all other craft that participated
+    boost::rational<unsigned long> share{1, participatingCraft.size()};
+
+    std::string ufoType = ufo->getRules()->getType();
+    auto p = _killCreditsByUfoType.find(ufoType);
+
+    if (p == _killCreditsByUfoType.end()) {
+        _killCreditsByUfoType.insert(std::make_pair(ufoType, share));
+    }
+    else {
+        p->second += share;
+    }
+}
+
+/**
+ * Gets the craft's kill credits by UFO type.
+ * @return The craft's kill credits by UFO type.
+ */
+/// Gets the craft's kill credits by UFO type.
+const std::map<std::string, boost::rational<unsigned long> >& Craft::getKillCreditsByUfoType() const
+{
+    return _killCreditsByUfoType;
 }
 
 }

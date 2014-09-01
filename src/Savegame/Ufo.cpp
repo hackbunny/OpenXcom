@@ -698,4 +698,14 @@ int Ufo::getHitFrame()
 {
 	return _hitFrame;
 }
+/// Add the id of a craft that engaged this UFO.
+void Ufo::addEngagedByCraft(Craft *craft)
+{
+    _engagedByCraft.insert(craft);
+}
+/// Get a list of the ids of all craft that engaged this UFO.
+const std::set<Craft *>& Ufo::getEngagedByCraft() const
+{
+    return _engagedByCraft;
+}
 }

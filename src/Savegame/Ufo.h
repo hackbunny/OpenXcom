@@ -21,6 +21,7 @@
 
 #include "MovingTarget.h"
 #include <string>
+#include <set>
 #include <yaml-cpp/yaml.h>
 
 namespace OpenXcom
@@ -56,6 +57,7 @@ private:
 	size_t _trajectoryPoint;
 	bool _detected, _hyperDetected;
 	int _shootingAt, _hitFrame;
+    std::set<Craft *> _engagedByCraft;
 	/// Calculates a new speed vector to the destination.
 	void calculateSpeed();
 public:
@@ -153,6 +155,10 @@ public:
 	void setHitFrame(int frame);
 	/// Gets the UFO's hit frame.
 	int getHitFrame();
+    /// Add the id of a craft that engaged this UFO.
+    void addEngagedByCraft(Craft *craft);
+    /// Get a list of the ids of all crafts that engaged this UFO.
+    const std::set<Craft *>& getEngagedByCraft() const;
 
 };
 

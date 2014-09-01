@@ -22,6 +22,8 @@
 #include "MovingTarget.h"
 #include <vector>
 #include <string>
+#include <map>
+#include <boost/rational.hpp>
 
 namespace OpenXcom
 {
@@ -34,6 +36,7 @@ class ItemContainer;
 class Ruleset;
 class SavedGame;
 class Vehicle;
+class Ufo;
 
 /**
  * Represents a craft stored in a base.
@@ -53,6 +56,7 @@ private:
 	std::string _status;
 	bool _lowFuel, _mission, _inBattlescape, _inDogfight;
 	std::wstring _name;
+    std::map<std::string, boost::rational<unsigned long> > _killCreditsByUfoType;
 public:
 	/// Creates a craft of the specified type.
 	Craft(RuleCraft *rules, Base *base, int id = 0);
@@ -166,6 +170,10 @@ public:
 	void setInterceptionOrder(const int order);
 	/// Gets interception number.
 	int getInterceptionOrder() const;
+    /// Credits an UFO kill to the craft.
+    void creditKill(Ufo *ufo);
+    /// Gets the craft's kill credits by UFO type.
+    const std::map<std::string, boost::rational<unsigned long> >& getKillCreditsByUfoType() const;
 };
 
 }

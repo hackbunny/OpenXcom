@@ -39,6 +39,8 @@
 #include "CraftWeaponsState.h"
 #include "CraftEquipmentState.h"
 #include "CraftArmorState.h"
+#include "../Ruleset/Ruleset.h"
+#include "../Ruleset/RuleUfo.h"
 
 namespace OpenXcom
 {
@@ -311,6 +313,21 @@ void CraftInfoState::init()
 		_txtW2Ammo->setVisible(false);
 	}
 	_defaultName = tr("STR_CRAFTNAME").arg(tr(_craft->getRules()->getType())).arg(_craft->getId());
+
+    for (const auto& credit: _craft->getKillCreditsByUfoType())
+    {
+        auto ufoType = credit.first;
+        auto fullCredit = credit.second.numerator() / credit.second.denominator();
+        auto fractionalCredit = credit.second - fullCredit;
+
+        std::wcout << L"Kills of " << _game->getLanguage()->getString(ufoType) << L": " << fullCredit;
+
+        if (fractionalCredit) {
+            std::wcout << L" " << fractionalCredit;
+        }
+
+        std::wcout << L"\n";
+    }
 }
 
 /**
