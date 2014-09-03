@@ -32,6 +32,9 @@
 #include "../Ruleset/UfoTrajectory.h"
 #include "SavedGame.h"
 #include "Waypoint.h"
+#include "Craft.h"
+#include "../Ruleset/RuleCraft.h"
+#include "Base.h"
 
 namespace OpenXcom
 {
@@ -115,6 +118,25 @@ void Ufo::load(const YAML::Node &node, const Ruleset &ruleset, SavedGame &game)
 	_hyperDetected = node["hyperDetected"].as<bool>(_hyperDetected);
 	_secondsRemaining = node["secondsRemaining"].as<size_t>(_secondsRemaining);
 	_inBattlescape = node["inBattlescape"].as<bool>(_inBattlescape);
+    if (const YAML::Node engadedByCraft = node["engagedByCraft"]) {
+        // TODO: throw errors when necessary
+        _engagedByCraft.clear();
+        if (engadedByCraft.IsSequence()) {
+            for (auto craftNode : engadedByCraft) {
+                auto craftType = craftNode["type"].as<std::string>();
+                auto craftId = craftNode["id"].as<int>();
+                
+                for (auto base : *game.getBases())
+                {
+                    for (auto craft : *base->getCrafts())
+                    {
+                        if (craft->getRules()->getType() == craftType && craft->getId() == craftId)
+                            _engagedByCraft.insert(craft);
+                    }
+                }
+            }
+        }
+    }
 	double lon = _lon;
 	double lat = _lat;
 	if (const YAML::Node &dest = node["dest"])
@@ -196,6 +218,17 @@ YAML::Node Ufo::save(bool newBattle) const
 		node["secondsRemaining"] = _secondsRemaining;
 	if (_inBattlescape)
 		node["inBattlescape"] = _inBattlescape;
+    if (!_engagedByCraft.empty())
+    {
+        YAML::Node engagedByCraft{YAML::NodeType::Sequence};
+        for (auto craft : _engagedByCraft) {
+            YAML::Node craftNode;
+            craftNode["type"] = craft->getRules()->getType();
+            craftNode["id"] = craft->getId();
+            engagedByCraft.push_back(craftNode);
+        }
+        node["engagedByCraft"] = engagedByCraft;
+    }
 	if (!newBattle)
 	{
 		node["mission"] = _mission->getId();

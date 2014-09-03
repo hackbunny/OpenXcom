@@ -38,6 +38,30 @@
 #include "../Ruleset/RuleUfo.h"
 #include "../Engine/Logger.h"
 
+namespace YAML {
+    template<typename IntType>
+    struct convert<boost::rational<IntType>>
+    {
+        static inline Node encode(const boost::rational<IntType>& rhs)
+        {
+            Node node(NodeType::Sequence);
+            node.push_back(rhs.numerator());
+            node.push_back(rhs.denominator());
+            return node;
+        }
+
+        static bool decode(const Node& node, boost::rational<IntType>& rhs)
+        {
+            if(!node.IsSequence())
+                return false;
+            if (node.size() != 2)
+                return false;
+            rhs = boost::rational<IntType>(node[0].as<IntType>(), node[1].as<IntType>());
+            return true;
+        }
+    };
+}
+
 namespace OpenXcom
 {
 
@@ -141,6 +165,10 @@ void Craft::load(const YAML::Node &node, const Ruleset *rule, SavedGame *save)
 	{
 		_name = Language::utf8ToWstr(name.as<std::string>());
 	}
+    if (const YAML::Node killCreditsByUfoType = node["killCreditsByUfoType"])
+    {
+        _killCreditsByUfoType = killCreditsByUfoType.as<decltype(_killCreditsByUfoType)>();
+    }
 	if (const YAML::Node &dest = node["dest"])
 	{
 		std::string type = dest["type"].as<std::string>();
@@ -242,6 +270,8 @@ YAML::Node Craft::save() const
 		node["takeoff"] = _takeoff;
 	if (!_name.empty())
 		node["name"] = Language::wstrToUtf8(_name);
+    if (!_killCreditsByUfoType.empty())
+        node["killCreditsByUfoType"] = _killCreditsByUfoType;
 	return node;
 }
 
