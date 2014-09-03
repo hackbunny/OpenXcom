@@ -304,6 +304,7 @@
 		5EB7BCAA19A4AB6E002FCFC2 /* Polyline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7BCA319A4AB6E002FCFC2 /* Polyline.cpp */; };
 		5EB7BCAB19A4AB6E002FCFC2 /* RuleGlobe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7BCA519A4AB6E002FCFC2 /* RuleGlobe.cpp */; };
 		5EB7BCAC19A4AB6E002FCFC2 /* RuleInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7BCA719A4AB6E002FCFC2 /* RuleInterface.cpp */; };
+		5EC4F8E319B76AD70052F0B6 /* SoundDefinition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EC4F8E119B76AD70052F0B6 /* SoundDefinition.cpp */; };
 		6BACF5FC19350F9700E1A981 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF5FB19350F9700E1A981 /* Cocoa.framework */; };
 		6BACF61419350F9700E1A981 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BACF61319350F9700E1A981 /* Images.xcassets */; };
 		6BACF63119350FF800E1A981 /* SDLMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF63019350FF800E1A981 /* SDLMain.m */; };
@@ -913,6 +914,8 @@
 		5EB7BCA619A4AB6E002FCFC2 /* RuleGlobe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleGlobe.h; sourceTree = "<group>"; };
 		5EB7BCA719A4AB6E002FCFC2 /* RuleInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RuleInterface.cpp; sourceTree = "<group>"; };
 		5EB7BCA819A4AB6E002FCFC2 /* RuleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RuleInterface.h; sourceTree = "<group>"; };
+		5EC4F8E119B76AD70052F0B6 /* SoundDefinition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundDefinition.cpp; sourceTree = "<group>"; };
+		5EC4F8E219B76AD70052F0B6 /* SoundDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundDefinition.h; sourceTree = "<group>"; };
 		6BACF5F819350F9700E1A981 /* OpenXcom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenXcom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BACF5FB19350F9700E1A981 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6BACF5FE19350F9700E1A981 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -1531,6 +1534,8 @@
 				5E7E44AF1976BA9D00D453BD /* RuleUfo.h */,
 				5E7E44B01976BA9D00D453BD /* SoldierNamePool.cpp */,
 				5E7E44B11976BA9D00D453BD /* SoldierNamePool.h */,
+				5EC4F8E119B76AD70052F0B6 /* SoundDefinition.cpp */,
+				5EC4F8E219B76AD70052F0B6 /* SoundDefinition.h */,
 				5E7E44B21976BA9D00D453BD /* StatString.cpp */,
 				5E7E44B31976BA9D00D453BD /* StatString.h */,
 				5E7E44B41976BA9D00D453BD /* StatStringCondition.cpp */,
@@ -1931,6 +1936,7 @@
 				5E7E45841976BA9D00D453BD /* RNG.cpp in Sources */,
 				5E7E45781976BA9D00D453BD /* Font.cpp in Sources */,
 				5E7E461A1976BA9D00D453BD /* CraftWeaponProjectile.cpp in Sources */,
+				5EC4F8E319B76AD70052F0B6 /* SoundDefinition.cpp in Sources */,
 				5E7E451A1976BA9D00D453BD /* BasescapeState.cpp in Sources */,
 				5E7E45B61976BA9D00D453BD /* TargetInfoState.cpp in Sources */,
 				5E7E456B1976BA9D00D453BD /* UnitTurnBState.cpp in Sources */,
