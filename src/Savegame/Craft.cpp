@@ -1003,10 +1003,18 @@ void Craft::creditKill(Ufo *ufo)
  * Gets the craft's kill credits by UFO type.
  * @return The craft's kill credits by UFO type.
  */
-/// Gets the craft's kill credits by UFO type.
 const std::map<std::string, boost::rational<unsigned long> >& Craft::getKillCreditsByUfoType() const
 {
     return _killCreditsByUfoType;
+}
+    
+/**
+ * Gets the craft's unique id.
+ * @return A tuple of the craft's type and per-type id.
+ */
+std::pair<std::string, int> Craft::getUniqueId() const
+{
+    return std::make_pair(_rules->getType(), _id);
 }
 
 }
