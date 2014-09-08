@@ -1014,7 +1014,7 @@ const std::map<std::string, boost::rational<unsigned long> >& Craft::getKillCred
  */
 CraftId Craft::getUniqueId() const
 {
-    return std::make_pair(_rules->getType(), _id);
+	return std::make_pair(_rules->getType(), _id);
 }
 
 }

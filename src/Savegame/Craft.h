@@ -171,12 +171,12 @@ public:
 	void setInterceptionOrder(const int order);
 	/// Gets interception number.
 	int getInterceptionOrder() const;
-    /// Credits an UFO kill to the craft.
-    void creditKill(Ufo *ufo);
-    /// Gets the craft's kill credits by UFO type.
-    const std::map<std::string, boost::rational<unsigned long> >& getKillCreditsByUfoType() const;
-    /// Gets the craft's unique id.
-    CraftId getUniqueId() const;
+	/// Credits an UFO kill to the craft.
+	void creditKill(Ufo *ufo);
+	/// Gets the craft's kill credits by UFO type.
+	const std::map<std::string, boost::rational<unsigned long> >& getKillCreditsByUfoType() const;
+	/// Gets the craft's unique id.
+	CraftId getUniqueId() const;
 };
 
 }
