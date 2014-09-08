@@ -24,6 +24,7 @@
 #include <string>
 #include <map>
 #include <boost/rational.hpp>
+#include "CraftId.h"
 
 namespace OpenXcom
 {
@@ -175,7 +176,7 @@ public:
     /// Gets the craft's kill credits by UFO type.
     const std::map<std::string, boost::rational<unsigned long> >& getKillCreditsByUfoType() const;
     /// Gets the craft's unique id.
-    std::pair<std::string, int> getUniqueId() const;
+    CraftId getUniqueId() const;
 };
 
 }
