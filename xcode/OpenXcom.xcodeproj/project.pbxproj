@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E4510E119BDB8920008465B /* xbrz.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E4510DF19BDB8920008465B /* xbrz.cpp */; };
 		5E5BA7DA1974481400F8E44F /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5BA7D91974481400F8E44F /* OpenGL.framework */; };
 		5E7E45191976BA9D00D453BD /* BaseInfoState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E42C21976BA9C00D453BD /* BaseInfoState.cpp */; };
 		5E7E451A1976BA9D00D453BD /* BasescapeState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7E42C41976BA9C00D453BD /* BasescapeState.cpp */; };
@@ -319,6 +320,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E4510DE19BDB8920008465B /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		5E4510DF19BDB8920008465B /* xbrz.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xbrz.cpp; sourceTree = "<group>"; };
+		5E4510E019BDB8920008465B /* xbrz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xbrz.h; sourceTree = "<group>"; };
 		5E5BA7D91974481400F8E44F /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		5E7E42C21976BA9C00D453BD /* BaseInfoState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseInfoState.cpp; sourceTree = "<group>"; };
 		5E7E42C31976BA9C00D453BD /* BaseInfoState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseInfoState.h; sourceTree = "<group>"; };
@@ -1261,6 +1265,7 @@
 			isa = PBXGroup;
 			children = (
 				5E7E43A21976BA9C00D453BD /* common.h */,
+				5E4510DE19BDB8920008465B /* config.h */,
 				5E7E43A31976BA9C00D453BD /* hq2x.cpp */,
 				5E7E43A41976BA9C00D453BD /* hq3x.cpp */,
 				5E7E43A51976BA9C00D453BD /* hq4x.cpp */,
@@ -1272,6 +1277,8 @@
 				5E7E43AB1976BA9C00D453BD /* scale3x.h */,
 				5E7E43AC1976BA9C00D453BD /* scalebit.cpp */,
 				5E7E43AD1976BA9C00D453BD /* scalebit.h */,
+				5E4510DF19BDB8920008465B /* xbrz.cpp */,
+				5E4510E019BDB8920008465B /* xbrz.h */,
 			);
 			path = Scalers;
 			sourceTree = "<group>";
@@ -1664,6 +1671,7 @@
 				6BACF5F919350F9700E1A981 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		6BACF5F919350F9700E1A981 /* Products */ = {
 			isa = PBXGroup;
@@ -2042,6 +2050,7 @@
 				5E7E463B1976BA9D00D453BD /* Ufopaedia.cpp in Sources */,
 				5E7E45341976BA9D00D453BD /* SellState.cpp in Sources */,
 				5E7E46071976BA9D00D453BD /* Ruleset.cpp in Sources */,
+				5E4510E119BDB8920008465B /* xbrz.cpp in Sources */,
 				5E7E46051976BA9D00D453BD /* RuleRegion.cpp in Sources */,
 				5E7E45AE1976BA9D00D453BD /* NewPossibleResearchState.cpp in Sources */,
 				5E7E45C41976BA9D00D453BD /* Text.cpp in Sources */,
@@ -2094,7 +2103,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -2107,7 +2116,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2143,7 +2152,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++98";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -2158,7 +2167,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
