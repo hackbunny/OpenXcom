@@ -1217,6 +1217,16 @@ void DogfightState::ufoFireWeapon()
 	_ufoFireInterval = (RNG::generate(0, _ufoFireInterval) + _ufoFireInterval) * _timeScale;
 	_ufoWtimer->setInterval(_ufoFireInterval);
 
+	for (std::set<Craft *>::const_iterator p = _ufo->getFightingCraft().begin(); p != _ufo->getFightingCraft().end(); ++p)
+	{
+		// At least one interceptor is currently fighting the UFO
+		if ((*p)->getWeapons()->size() != 0)
+		{
+			// Diverting enemy fire from friendly craft counts as credit
+			_ufo->addEngagedByCraft(_craft->getUniqueId());
+			break;
+		}
+	}
 
 	setStatus("STR_UFO_RETURN_FIRE");
 	CraftWeaponProjectile *p = new CraftWeaponProjectile();
