@@ -40,7 +40,7 @@
 
 namespace YAML {
     template<typename IntType>
-    struct convert<boost::rational<IntType>>
+    struct convert<boost::rational<IntType> >
     {
         static inline Node encode(const boost::rational<IntType>& rhs)
         {
@@ -975,26 +975,18 @@ void Craft::creditKill(Ufo *ufo)
     // if (ufo->getShotDownByCraft() == this) ... // special scoring for the craft that dealt the fatal shot?
     // if (ufo->isDestroyed()) ... // special scoring if the UFO was destroyed?
 
-    const std::set<Craft *>& participatingCraft = ufo->getEngagedByCraft();
-
-    assert(participatingCraft.size());
-    assert(participatingCraft.find(this) != participatingCraft.end());
-
-    if (participatingCraft.size() == 0 || participatingCraft.find(this) == participatingCraft.end()) {
-        // TODO: log warning
-        return;
-    }
-
-    // We'll share the credit with all other craft that participated
-    boost::rational<unsigned long> share{1, participatingCraft.size()};
+    // As is customary, we'll share the credit with all other craft that participated
+    boost::rational<unsigned long> share(1, ufo->getEngagedByCraft().size());
 
     std::string ufoType = ufo->getRules()->getType();
-    auto p = _killCreditsByUfoType.find(ufoType);
+    std::map<std::string, boost::rational<unsigned long> >::iterator p = _killCreditsByUfoType.find(ufoType);
 
-    if (p == _killCreditsByUfoType.end()) {
+    if (p == _killCreditsByUfoType.end())
+	{
         _killCreditsByUfoType.insert(std::make_pair(ufoType, share));
     }
-    else {
+    else
+	{
         p->second += share;
     }
 }

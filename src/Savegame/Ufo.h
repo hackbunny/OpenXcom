@@ -57,7 +57,7 @@ private:
 	size_t _trajectoryPoint;
 	bool _detected, _hyperDetected;
 	int _shootingAt, _hitFrame;
-    std::set<Craft *> _engagedByCraft;
+    std::set<CraftId> _engagedByCraft;
 	/// Calculates a new speed vector to the destination.
 	void calculateSpeed();
 public:
@@ -156,9 +156,9 @@ public:
 	/// Gets the UFO's hit frame.
 	int getHitFrame();
     /// Add the id of a craft that engaged this UFO.
-    void addEngagedByCraft(Craft *craft);
+    void addEngagedByCraft(const CraftId& craft);
     /// Get a list of the ids of all crafts that engaged this UFO.
-    const std::set<Craft *>& getEngagedByCraft() const;
+    const std::set<CraftId>& getEngagedByCraft() const;
 
 };
 

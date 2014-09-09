@@ -1065,9 +1065,12 @@ void DogfightState::move()
 						break;
 					}
 				}
-                for (std::set<Craft*>::const_iterator craft = _ufo->getEngagedByCraft().begin(); craft != _ufo->getEngagedByCraft().end(); ++craft)
+                for (std::set<CraftId>::const_iterator craftId = _ufo->getEngagedByCraft().begin(); craftId != _ufo->getEngagedByCraft().end(); ++craftId)
                 {
-                    (*craft)->creditKill(_ufo);
+					if (Craft *craft = _game->getSavedGame()->findCraftByUniqueId(*craftId))
+					{
+						craft->creditKill(_ufo);
+					}
                 }
 				setStatus("STR_UFO_DESTROYED");
 				_game->getResourcePack()->getSound("GEO.CAT", ResourcePack::UFO_EXPLODE)->play(); //11
@@ -1096,9 +1099,12 @@ void DogfightState::move()
 						break;
 					}
 				}
-                for (std::set<Craft*>::const_iterator craft = _ufo->getEngagedByCraft().begin(); craft != _ufo->getEngagedByCraft().end(); ++craft)
+                for (std::set<CraftId>::const_iterator craftId = _ufo->getEngagedByCraft().begin(); craftId != _ufo->getEngagedByCraft().end(); ++craftId)
                 {
-                    (*craft)->creditKill(_ufo);
+					if (Craft *craft = _game->getSavedGame()->findCraftByUniqueId(*craftId))
+					{
+						craft->creditKill(_ufo);
+					}
                 }
 			}
 			if (!_globe->insideLand(_ufo->getLongitude(), _ufo->getLatitude()))
@@ -1153,7 +1159,7 @@ void DogfightState::fireWeapon1()
 		if (w1->setAmmo(w1->getAmmo() - 1))
 		{
 
-            _ufo->addEngagedByCraft(_craft);
+			_ufo->addEngagedByCraft(_craft->getUniqueId());
 
 			std::wostringstream ss;
 			ss << w1->getAmmo();
@@ -1181,7 +1187,7 @@ void DogfightState::fireWeapon2()
 		if (w2->setAmmo(w2->getAmmo() - 1))
 		{
 
-            _ufo->addEngagedByCraft(_craft);
+			_ufo->addEngagedByCraft(_craft->getUniqueId());
 
 			std::wostringstream ss;
 			ss << w2->getAmmo();
@@ -1208,7 +1214,6 @@ void DogfightState::ufoFireWeapon()
 	_ufoFireInterval = (RNG::generate(0, _ufoFireInterval) + _ufoFireInterval) * _timeScale;
 	_ufoWtimer->setInterval(_ufoFireInterval);
 
-    _ufo->addEngagedByCraft(_craft);
 
 	setStatus("STR_UFO_RETURN_FIRE");
 	CraftWeaponProjectile *p = new CraftWeaponProjectile();

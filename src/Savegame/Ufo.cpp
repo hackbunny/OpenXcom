@@ -121,19 +121,11 @@ void Ufo::load(const YAML::Node &node, const Ruleset &ruleset, SavedGame &game)
     if (const YAML::Node engadedByCraft = node["engagedByCraft"]) {
         // TODO: throw errors when necessary
         _engagedByCraft.clear();
-        if (engadedByCraft.IsSequence()) {
-            for (auto craftNode : engadedByCraft) {
-                auto craftType = craftNode["type"].as<std::string>();
-                auto craftId = craftNode["id"].as<int>();
-                
-                for (auto base : *game.getBases())
-                {
-                    for (auto craft : *base->getCrafts())
-                    {
-                        if (craft->getRules()->getType() == craftType && craft->getId() == craftId)
-                            _engagedByCraft.insert(craft);
-                    }
-                }
+        if (engadedByCraft.IsSequence())
+		{
+            for (YAML::Node::const_iterator p = engadedByCraft.begin(); p != engadedByCraft.end(); ++p)
+			{
+				_engagedByCraft.insert(std::make_pair((*p)["type"].as<std::string>(), (*p)["id"].as<int>()));
             }
         }
     }
@@ -220,11 +212,11 @@ YAML::Node Ufo::save(bool newBattle) const
 		node["inBattlescape"] = _inBattlescape;
     if (!_engagedByCraft.empty())
     {
-        YAML::Node engagedByCraft{YAML::NodeType::Sequence};
-        for (auto craft : _engagedByCraft) {
+        YAML::Node engagedByCraft(YAML::NodeType::Sequence);
+        for (std::set<CraftId>::const_iterator p = _engagedByCraft.begin(); p != _engagedByCraft.end(); ++p) {
             YAML::Node craftNode;
-            craftNode["type"] = craft->getRules()->getType();
-            craftNode["id"] = craft->getId();
+            craftNode["type"] = p->first;
+            craftNode["id"] = p->second;
             engagedByCraft.push_back(craftNode);
         }
         node["engagedByCraft"] = engagedByCraft;
@@ -732,12 +724,12 @@ int Ufo::getHitFrame()
 	return _hitFrame;
 }
 /// Add the id of a craft that engaged this UFO.
-void Ufo::addEngagedByCraft(Craft *craft)
+void Ufo::addEngagedByCraft(const CraftId& craftId)
 {
-    _engagedByCraft.insert(craft);
+    _engagedByCraft.insert(craftId);
 }
 /// Get a list of the ids of all craft that engaged this UFO.
-const std::set<Craft *>& Ufo::getEngagedByCraft() const
+const std::set<CraftId>& Ufo::getEngagedByCraft() const
 {
     return _engagedByCraft;
 }
