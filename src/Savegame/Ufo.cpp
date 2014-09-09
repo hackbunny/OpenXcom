@@ -723,6 +723,21 @@ int Ufo::getHitFrame()
 {
 	return _hitFrame;
 }
+/// Add a craft currently in a dogfight with this UFO.
+void Ufo::addFightingCraft(Craft *craft)
+{
+	_fightingCraft.insert(craft);
+}
+/// Remove a craft no longer in a dogfight with this UFO.
+void Ufo::removeFightingCraft(Craft *craft)
+{
+	_fightingCraft.erase(craft);
+}
+/// Add the id of a craft currently in a dogfight with this UFO.
+const std::set<Craft *>& Ufo::getFightingCraft() const
+{
+	return _fightingCraft;
+}
 /// Add the id of a craft that engaged this UFO.
 void Ufo::addEngagedByCraft(const CraftId& craftId)
 {

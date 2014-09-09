@@ -239,6 +239,7 @@ DogfightState::DogfightState(Globe *globe, Craft *craft, Ufo *ufo) : _globe(glob
 	_screen = false;
 
 	_craft->setInDogfight(true);
+	_ufo->addFightingCraft(_craft);
 	_timeScale = 50 + Options::dogfightSpeed;
 
 	// Create objects
@@ -561,6 +562,8 @@ DogfightState::~DogfightState()
 		delete _projectiles.back();
 		_projectiles.pop_back();
 	}
+	if (_ufo)
+		_ufo->removeFightingCraft(_craft);
 	if (_craft)
 		_craft->setInDogfight(false);
 }
@@ -1842,6 +1845,8 @@ Ufo* DogfightState::getUfo() const
  */
 void DogfightState::endDogfight()
 {
+	if (_ufo)
+		_ufo->removeFightingCraft(_craft);
 	if (_craft)
 		_craft->setInDogfight(false);
 	_endDogfight = true;

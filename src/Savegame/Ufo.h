@@ -33,6 +33,7 @@ class AlienMission;
 class UfoTrajectory;
 class SavedGame;
 class Ruleset;
+class Craft;
 
 /**
  * Represents an alien UFO on the map.
@@ -57,6 +58,7 @@ private:
 	size_t _trajectoryPoint;
 	bool _detected, _hyperDetected;
 	int _shootingAt, _hitFrame;
+	std::set<Craft *> _fightingCraft;
     std::set<CraftId> _engagedByCraft;
 	/// Calculates a new speed vector to the destination.
 	void calculateSpeed();
@@ -155,6 +157,12 @@ public:
 	void setHitFrame(int frame);
 	/// Gets the UFO's hit frame.
 	int getHitFrame();
+	/// Add a craft currently in a dogfight with this UFO.
+	void addFightingCraft(Craft *craft);
+	/// Remove a craft no longer in a dogfight with this UFO.
+	void removeFightingCraft(Craft *craft);
+	/// Add the id of a craft currently in a dogfight with this UFO.
+	const std::set<Craft *>& getFightingCraft() const;
     /// Add the id of a craft that engaged this UFO.
     void addEngagedByCraft(const CraftId& craft);
     /// Get a list of the ids of all crafts that engaged this UFO.
