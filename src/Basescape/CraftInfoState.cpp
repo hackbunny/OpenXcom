@@ -320,10 +320,13 @@ void CraftInfoState::init()
         auto fullCredit = credit.second.numerator() / credit.second.denominator();
         auto fractionalCredit = credit.second - fullCredit;
 
-        std::wcout << L"Kills of " << _game->getLanguage()->getString(ufoType) << L": " << fullCredit;
+        std::wcout << L"Kills of " << _game->getLanguage()->getString(ufoType) << L":";
 
+		if (fullCredit || !fractionalCredit) {
+			std::wcout << L" " << fullCredit;
+		}
         if (fractionalCredit) {
-            std::wcout << L" " << fractionalCredit;
+            std::wcout << L" " << fractionalCredit.numerator() << L'/' << fractionalCredit.denominator();
         }
 
         std::wcout << L"\n";
