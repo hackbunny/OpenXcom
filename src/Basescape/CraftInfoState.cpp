@@ -314,11 +314,11 @@ void CraftInfoState::init()
 	}
 	_defaultName = tr("STR_CRAFTNAME").arg(tr(_craft->getRules()->getType())).arg(_craft->getId());
 
-    for (const auto& credit: _craft->getKillCreditsByUfoType())
+	for (std::map<std::string, boost::rational<unsigned long> >::const_iterator p = _craft->getKillCreditsByUfoType().begin(); p != _craft->getKillCreditsByUfoType().end(); ++ p)
     {
-        auto ufoType = credit.first;
-        auto fullCredit = credit.second.numerator() / credit.second.denominator();
-        auto fractionalCredit = credit.second - fullCredit;
+        std::string ufoType = p->first;
+		unsigned long fullCredit = p->second.numerator() / p->second.denominator();
+		boost::rational<unsigned long> fractionalCredit = p->second - fullCredit;
 
         std::wcout << L"Kills of " << _game->getLanguage()->getString(ufoType) << L":";
 

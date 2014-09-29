@@ -167,7 +167,7 @@ void Craft::load(const YAML::Node &node, const Ruleset *rule, SavedGame *save)
 	}
     if (const YAML::Node killCreditsByUfoType = node["killCreditsByUfoType"])
     {
-        _killCreditsByUfoType = killCreditsByUfoType.as<decltype(_killCreditsByUfoType)>();
+        _killCreditsByUfoType = killCreditsByUfoType.as<std::map<std::string, boost::rational<unsigned long> > >();
     }
 	if (const YAML::Node &dest = node["dest"])
 	{
