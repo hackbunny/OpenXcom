@@ -28,6 +28,7 @@
 #include "Projectile.h"
 #include "Explosion.h"
 #include "BattlescapeState.h"
+#include "Particle.h"
 #include "../Resource/ResourcePack.h"
 #include "../Engine/Action.h"
 #include "../Engine/SurfaceSet.h"
@@ -93,9 +94,14 @@ Map::Map(Game *game, int width, int height, int x, int y, int visibleMapHeight) 
 		_previewSetting = PATH_FULL;
 	}
 	_res = _game->getResourcePack();
+	_save = _game->getSavedGame()->getSavedBattle();
+	if (_res->getLUTs()->size() > _save->getDepth())
+	{
+		_transparencies = &_res->getLUTs()->at(_save->getDepth());
+	}
+
 	_spriteWidth = _res->getSurfaceSet("BLANKS.PCK")->getFrame(0)->getWidth();
 	_spriteHeight = _res->getSurfaceSet("BLANKS.PCK")->getFrame(0)->getHeight();
-	_save = _game->getSavedGame()->getSavedBattle();
 	_message = new BattlescapeMessage(320, (visibleMapHeight < 200)? visibleMapHeight : 200, 0, 0);
 	_message->setX(_game->getScreen()->getDX());
 	_message->setY((visibleMapHeight - _message->getHeight()) / 2);
@@ -364,10 +370,6 @@ void Map::drawTerrain(Surface *surface)
 				while (!enough);
 			}
 		}
-	}
-	else
-	{
-		_smoothingEngaged = false;
 	}
 
 	// get corner map coordinates to give rough boundaries in which tiles to redraw are
@@ -656,7 +658,15 @@ void Map::drawTerrain(Surface *surface)
 									int shade = 0;
 									if (!tileWest->getFire())
 									{
-										frameNumber = 8 + int(floor((tileWest->getSmoke() / 6.0) - 0.1)); // see http://www.ufopaedia.org/images/c/cb/Smoke.gif
+										if (_save->getDepth() > 0)
+										{
+											frameNumber += ResourcePack::UNDERWATER_SMOKE_OFFSET;
+										}
+										else
+										{
+											frameNumber += ResourcePack::SMOKE_OFFSET;
+										}
+										frameNumber += int(floor((tileWest->getSmoke() / 6.0) - 0.1)); // see http://www.ufopaedia.org/images/c/cb/Smoke.gif
 										shade = tileWestShade;
 									}
 
@@ -896,7 +906,15 @@ void Map::drawTerrain(Surface *surface)
 						int shade = 0;
 						if (!tile->getFire())
 						{
-							frameNumber = 8 + int(floor((tile->getSmoke() / 6.0) - 0.1)); // see http://www.ufopaedia.org/images/c/cb/Smoke.gif
+							if (_save->getDepth() > 0)
+							{
+								frameNumber += ResourcePack::UNDERWATER_SMOKE_OFFSET;
+							}
+							else
+							{
+								frameNumber += ResourcePack::SMOKE_OFFSET;
+							}
+							frameNumber += int(floor((tile->getSmoke() / 6.0) - 0.1)); // see http://www.ufopaedia.org/images/c/cb/Smoke.gif
 							shade = tileShade;
 						}
 
@@ -910,6 +928,28 @@ void Map::drawTerrain(Surface *surface)
 						}
 						tmpSurface = _res->getSurfaceSet("SMOKE.PCK")->getFrame(frameNumber);
 						tmpSurface->blitNShade(surface, screenPosition.x, screenPosition.y, shade);
+					}
+
+					//draw particle clouds
+					for (std::list<Particle*>::const_iterator i = tile->getParticleCloud()->begin(); i != tile->getParticleCloud()->end(); ++i)
+					{
+						int vaporX = screenPosition.x + (*i)->getX();
+						int vaporY = screenPosition.y + (*i)->getY();
+						if (_transparencies->size() >= ((*i)->getColor() + 1) * 1024)
+						{
+							switch ((*i)->getSize())
+							{
+							case 3:
+								surface->setPixel(vaporX+1, vaporY+1, (*_transparencies)[((*i)->getColor() * 1024) + ((*i)->getOpacity() * 256) + surface->getPixel(vaporX+1, vaporY+1)]); 
+							case 2:
+								surface->setPixel(vaporX + 1, vaporY, (*_transparencies)[((*i)->getColor() * 1024) + ((*i)->getOpacity() * 256) + surface->getPixel(vaporX + 1, vaporY)]); 
+							case 1:
+								surface->setPixel(vaporX, vaporY + 1, (*_transparencies)[((*i)->getColor() * 1024) + ((*i)->getOpacity() * 256) + surface->getPixel(vaporX, vaporY + 1)]); 
+							default:
+								surface->setPixel(vaporX, vaporY, (*_transparencies)[((*i)->getColor() * 1024) + ((*i)->getOpacity() * 256) + surface->getPixel(vaporX, vaporY)]); 
+								break;
+							}
+						}
 					}
 
 					// Draw Path Preview
@@ -1489,7 +1529,7 @@ void Map::cacheUnit(BattleUnit *unit)
 	UnitSprite *unitSprite = new UnitSprite(unit->getStatus() == STATUS_AIMING ? _spriteWidth * 2: _spriteWidth, _spriteHeight, 0, 0, _save->getDepth() != 0);
 	unitSprite->setPalette(this->getPalette());
 	bool invalid, dummy;
-	int numOfParts = unit->getArmor()->getSize() == 1?1:unit->getArmor()->getSize()*2;
+	int numOfParts = unit->getArmor()->getSize() * unit->getArmor()->getSize();
 
 	unit->getCache(&invalid);
 	if (invalid)
@@ -1519,7 +1559,7 @@ void Map::cacheUnit(BattleUnit *unit)
 				unitSprite->setBattleItem(lhandItem);
 			}
 
-			if(!lhandItem && !rhandItem)
+			if (!lhandItem && !rhandItem)
 			{
 				unitSprite->setBattleItem(0);
 			}
@@ -1663,7 +1703,7 @@ const int Map::getMessageY()
  */
 const int Map::getIconHeight()
 {
-	return _iconWidth;
+	return _iconHeight;
 }
 
 /**
@@ -1671,7 +1711,37 @@ const int Map::getIconHeight()
  */
 const int Map::getIconWidth()
 {
-	return _iconHeight;
+	return _iconWidth;
 }
 
+/**
+ * Returns the angle(left/right balance) of a sound effect,
+ * based off a map position.
+ * @param pos the map position to calculate the sound angle from.
+ * @return the angle of the sound (280 to 440).
+ */
+const int Map::getSoundAngle(Position pos)
+{
+	int midPoint = getWidth() / 2;
+	Position relativePosition;
+
+	_camera->convertMapToScreen(pos, &relativePosition);
+	// cap the position to the screen edges relative to the center,
+	// negative values indicating a left-shift, and positive values shifting to the right.
+	relativePosition.x = std::max(-midPoint, std::min(midPoint, (relativePosition.x + _camera->getMapOffset().x) - midPoint));
+
+	// convert the relative distance to a relative increment of an 80 degree angle
+	// we use +- 80 instead of +- 90, so as not to go ALL the way left or right
+	// which would effectively mute the sound out of one speaker.
+	// since Mix_SetPosition uses modulo 360, we can't feed it a negative number, so add 360 instead.
+	return 360 + (relativePosition.x / (double)(midPoint / 80.0));
+}
+
+/**
+ * Reset the camera smoothing bool.
+ */
+void Map::resetCameraSmoothing()
+{
+	_smoothingEngaged = false;
+}
 }
